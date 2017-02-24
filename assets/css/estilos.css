@@ -1,0 +1,31 @@
+html
+{
+    position: relative; 
+    min-height: 100%;
+}
+
+body
+{
+    margin: 0 0 65px;
+}
+
+footer
+{
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    height: 65px;
+}
+
+body > .container
+{
+    padding-top: 60px;
+}
+
+header
+{
+    padding: 5px 5px 5px 5px;
+}
+
+
+
