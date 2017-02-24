@@ -52,19 +52,22 @@ class Company_model extends CI_Model
      * 
      * 
      */
-    public function traer_empresa($nit)
+    public function traer_empresa($id)
     {
         $empresa=array();
-        $this->db->where('nit',$nit);
+        $this->db->where('id',$id);
         $query=$this->db->get('empresas');
-        $row=$query->row();
-        $empresa['nit']=$row->nit;
-        $empresa['razon_social']=$row->razon_social;
-        $empresa['telefono']=$row->telefono;
-        $empresa['extension']=$row->extension;
-        $empresa['celular']=$row->celular;
-        $empresa['contacto']=$row->contacto;
-        $empresa['direccion']=$row->direccion;
+        if($query->num_rows()>0)
+        {
+            $row=$query->row();
+            $empresa['nit']=$row->nit;
+            $empresa['razon_social']=$row->razon_social;
+            $empresa['telefono']=$row->telefono;
+            $empresa['extension']=$row->extension;
+            $empresa['celular']=$row->celular;
+            $empresa['contacto']=$row->contacto;
+            $empresa['direccion']=$row->direccion;            
+        }
         
         return $empresa;
     }

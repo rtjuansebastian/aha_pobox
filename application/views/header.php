@@ -33,7 +33,7 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li><a href="<?=  base_url()?>user/ver_perfil">Perfil<span class="sr-only">(current)</span></a></li>
-                                <li><a href="<?=  base_url()?>">Proyecciones</a></li>
+                                <li><a href="<?=  base_url()?>company/ver_empresa">Empresa</a></li>
                                 <li><a href="<?=  base_url()?>">Opción 1</a></li>
                                 <li><a href="<?=  base_url()?>">Opción 2</a></li>
                                 <li><a href="<?=  base_url()?>">Opción 3</a></li>

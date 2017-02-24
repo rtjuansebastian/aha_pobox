@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Perfil</h1>
+                    <h1>Perfil <?=$usuario['nombre']?></h1>
                     <table class="table">
                         <thead>
                             <tr>
