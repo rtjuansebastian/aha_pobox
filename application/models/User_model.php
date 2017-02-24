@@ -75,5 +75,15 @@ class User_model extends CI_Model
         }
         
         return $usuario;
-    }    
+    }
+
+    public function editar_campo_usuario($cedula,$campo,$valor)
+    {
+        $data = array(
+               $campo => $valor
+        );
+
+        $this->db->where('cedula', $cedula);
+        $this->db->update('usuarios', $data); 
+    }
 }

@@ -27,5 +27,25 @@ header
     padding: 5px 5px 5px 5px;
 }
 
+.editable span
+{display:block;
+}
 
+.editable span:hover 
+{background:url(../img/edit.png) 90% 50% no-repeat;
+ cursor:pointer;}
 
+a.enlace
+{display:inline-block;
+ width:24px;
+ height:24px;
+ margin:0 0 0 5px;
+ overflow:hidden;
+ text-indent:-999em;
+ vertical-align:middle;}
+
+.guardar
+{background:url(../img/save.png) 0 0 no-repeat;}
+
+.cancelar
+{background:url(../img/cancel.png) 0 0 no-repeat;}
