@@ -36,7 +36,7 @@
                                 <li><a href="<?=  base_url()?>company/ver_empresa">Empresa</a></li>
                                 <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
                                 <li><a href="<?=  base_url()?>inventory/ver_inventario">Inventario</a></li>
-                                <li><a href="<?=  base_url()?>">Opción 3</a></li>
+                                <li><a href="<?=  base_url()?>order/ver_pedidos_empresa">Pedidos</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="<?php echo base_url(); ?>login/cerrar_sesion">Desconectar</a></li>            
