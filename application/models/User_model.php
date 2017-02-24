@@ -36,13 +36,16 @@ class User_model extends CI_Model
         $this->db->from('usuarios');
         $this->db->join('empresas','usuarios.empresa=empresas.id');
         $query=$this->db->get();
-        foreach ($query->result() as $row)
+        if($query->num_rows()>0)
         {
-            $usuarios[$row->cedula]['cedula']=$row->cedula;
-            $usuarios[$row->cedula]['nombre']=$row->nombre;
-            $usuarios[$row->cedula]['email']=$row->email;
-            $usuarios[$row->cedula]['empresa']=$row->empresa;
-            $usuarios[$row->cedula]['razon_social']=$row->razon_social;
+            foreach ($query->result() as $row)
+            {
+                $usuarios[$row->cedula]['cedula']=$row->cedula;
+                $usuarios[$row->cedula]['nombre']=$row->nombre;
+                $usuarios[$row->cedula]['email']=$row->email;
+                $usuarios[$row->cedula]['empresa']=$row->empresa;
+                $usuarios[$row->cedula]['razon_social']=$row->razon_social;
+            }
         }
         
         return $usuarios;
@@ -61,12 +64,15 @@ class User_model extends CI_Model
         $this->db->join('empresas','usuarios.empresa=empresas.id');
         $this->db->where('cedula',$cedula);
         $query=$this->db->get();
-        $row=$query->row();
-        $usuario['cedula']=$row->cedula;
-        $usuario['nombre']=$row->nombre;
-        $usuario['email']=$row->email;
-        $usuario['empresa']=$row->empresa;
-        $usuario['razon_social']=$row->razon_social;
+        if($query->num_rows()>0)
+        {
+            $row=$query->row();
+            $usuario['cedula']=$row->cedula;
+            $usuario['nombre']=$row->nombre;
+            $usuario['email']=$row->email;
+            $usuario['empresa']=$row->empresa;
+            $usuario['razon_social']=$row->razon_social;
+        }
         
         return $usuario;
     }    

@@ -34,7 +34,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="<?=  base_url()?>user/ver_perfil">Perfil<span class="sr-only">(current)</span></a></li>
                                 <li><a href="<?=  base_url()?>company/ver_empresa">Empresa</a></li>
-                                <li><a href="<?=  base_url()?>">Opción 1</a></li>
+                                <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
                                 <li><a href="<?=  base_url()?>">Opción 2</a></li>
                                 <li><a href="<?=  base_url()?>">Opción 3</a></li>
                             </ul>

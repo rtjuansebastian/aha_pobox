@@ -33,15 +33,18 @@ class Company_model extends CI_Model
     {
         $empresas=array();
         $query=$this->db->get('empresas');
-        foreach ($query->result() as $row)
+        if($query->num_rows()>0)
         {
-            $empresas[$row->id]['nit']=$row->nit;
-            $empresas[$row->id]['razon_social']=$row->razon_social;
-            $empresas[$row->id]['telefono']=$row->telefono;
-            $empresas[$row->id]['extension']=$row->extension;
-            $empresas[$row->id]['celular']=$row->celular;
-            $empresas[$row->id]['contacto']=$row->contacto;
-            $empresas[$row->id]['direccion']=$row->direccion;
+            foreach ($query->result() as $row)
+            {
+                $empresas[$row->id]['nit']=$row->nit;
+                $empresas[$row->id]['razon_social']=$row->razon_social;
+                $empresas[$row->id]['telefono']=$row->telefono;
+                $empresas[$row->id]['extension']=$row->extension;
+                $empresas[$row->id]['celular']=$row->celular;
+                $empresas[$row->id]['contacto']=$row->contacto;
+                $empresas[$row->id]['direccion']=$row->direccion;
+            }            
         }
         
         return $empresas;
