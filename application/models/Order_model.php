@@ -94,4 +94,61 @@ class Order_model extends CI_Model
         
         return $productos;
     }
+    
+    public function agregar_producto($referencia,$cantidad,$titulo)
+    {
+        $data = array(
+                'id'      => $referencia,
+                'qty'     => $cantidad,
+                'price'   => $cantidad,
+                'name'    => $titulo
+        );
+
+        $this->cart->insert($data);        
+    }
+    
+    public function quitar_producto($rowid)
+    {
+        $this->cart-> remove($rowid);
+    }
+
+    public function items_pedido()
+    {
+        $datos['items']=array();
+        
+        foreach ($this->cart->contents() as $items)
+        {            
+            $datos['items'][]=$items;
+        }
+        
+        $datos['total']=$this->cart->total_items();
+        
+        return $datos;        
+    }
+    
+    public function registrar_pedido($fecha,$empresa,$items)
+    {
+        $data = array(
+           'fecha' => $fecha ,
+           'empresa' => $empresa ,
+           'estado' => '1'
+        );
+
+        $this->db->insert('pedidos', $data);
+        
+        $pedido=  $this->db->insert_id();
+        
+        foreach ($items['items'] as $producto)
+        {
+            $data = array(
+               'pedido' => $pedido ,
+               'producto' => $producto['id'] ,
+               'cantidad' => $producto['qty']
+            );
+
+            $this->db->insert('pedidos_productos', $data);            
+        }
+        
+        $this->cart->destroy();
+    }
 }
