@@ -42,6 +42,20 @@ class Admin extends CI_Controller
         $this->load->view('product/agregar_producto_view');
     }
 
+    public function crear_producto()
+    {
+        $producto=$this->input->post();
+        $this->product_model->crear_producto($producto);
+        redirect('/admin/ver_productos', 'refresh');
+    }
+    
+    public function editar_campo_producto()
+    {
+        $campo=  $this->input->post('campo');
+        $valor=  $this->input->post('valor');
+        $referencia=  $this->input->post('referencia');
+        $this->product_model->editar_campo_producto($referencia,$campo,$valor);
+    }
 
     public function ver_empresas()
     {

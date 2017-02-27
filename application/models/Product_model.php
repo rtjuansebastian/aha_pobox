@@ -55,5 +55,20 @@ class Product_model extends CI_Model
         }
         
         return $producto;
-    }    
+    }   
+    
+    public function crear_producto($producto)
+    {        
+        $this->db->insert('productos', $producto); 
+    }
+    
+    public function editar_campo_producto($referencia,$campo,$valor)
+    {
+        $data = array(
+                       $campo => $valor
+                    );
+
+        $this->db->where('referencia', $referencia);
+        $this->db->update('productos', $data);         
+    }
 }
