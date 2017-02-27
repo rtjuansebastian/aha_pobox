@@ -19,13 +19,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
-    }
-    
-    public function ver_usuarios()
-    {
-        $datos['usuarios']=$this->user_model->traer_usuarios();
-        $this->load->view('user/usuarios_view',$datos);
-    }
+    }    
     
     public function ver_perfil()
     {

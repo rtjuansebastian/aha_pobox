@@ -24,6 +24,30 @@ class Sales_model extends CI_Model
         parent::__construct();
     }
     
+    public function traer_ventas()
+    {
+        $ventas=array();
+        $this->db->select("inventarios.id, inventarios.empresa, empresas.razon_social, inventarios.producto, productos.titulo, inventarios.cantidad, inventarios.fecha");
+        $this->db->from('inventarios');
+        $this->db->join('productos',"inventarios.producto=productos.referencia");        
+        $this->db->join('empresas',"inventarios.empresa=empresas.id");    
+        $query= $this->db->get();
+        if($query->num_rows()>0)
+        {
+            foreach ($query->result() as $row)
+            {
+                $ventas[$row->empresa][$row->id]['empresa']=$row->razon_social;
+                $ventas[$row->empresa][$row->id]['producto']=$row->producto;
+                $ventas[$row->empresa][$row->id]['titulo']=$row->titulo;
+                $ventas[$row->empresa][$row->id]['cantidad']=$row->cantidad;
+                $ventas[$row->empresa][$row->id]['fecha']=$row->fecha;
+            }
+        }
+        
+        return $ventas;        
+    }
+
+
     public function traer_ventas_empresa($empresa)
     {
         $ventas=array();

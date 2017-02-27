@@ -21,13 +21,7 @@ class Inventory extends CI_Controller
         $this->load->model('inventory_model');
         $this->load->model('user_model');
         $this->load->model('company_model');
-    }
-    
-    public function ver_inventarios()
-    {
-        $datos['inventarios']=$this->inventory_model->traer_inventarios();
-        $this->load->view('inventory/inventarios_view',$datos);
-    }
+    }    
     
     public function ver_inventario()
     {

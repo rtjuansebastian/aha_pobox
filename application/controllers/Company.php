@@ -21,13 +21,7 @@ class Company extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('company_model');
     }
-    
-    public function ver_empresas()
-    {
-        $datos['empresas']=$this->company_model->traer_empresas();
-        $this->load->view('company/empresas_view',$datos);
-    }
-    
+        
     public function ver_empresa()
     {
         $usuario=$this->session->userdata('sesion'); 

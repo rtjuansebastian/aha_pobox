@@ -1,8 +1,7 @@
-<?php $this->load->view("header_admin");  ?>       
+<?php $this->load->view("header_admin");  ?>      
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Inventarios</h1>
                     <table class="table">
                         <thead>
                             <tr>
@@ -10,23 +9,27 @@
                                 <th>Referencia</th>
                                 <th>Titulo</th>
                                 <th>Cantidad</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
 <?php
-foreach ($inventarios as $inventario)
+foreach ($ventas as $ventas_empresa)
 {
+    foreach ($ventas_empresa as $venta)
+    {
 ?>
                             <tr>
-                                <td><?=$inventario['empresa']?></td>
-                                <td><?=$inventario['referencia']?></td>
-                                <td><?=$inventario['titulo']?></td>
-                                <td><?=$inventario['cantidad']?></td>                           
+                                <td><?=$venta['empresa']?></td>
+                                <td><?=$venta['producto']?></td>
+                                <td><?=$venta['titulo']?></td>
+                                <td><?=$venta['cantidad']?></td>
+                                <td><?=$venta['fecha']?></td>
                             </tr>
-<?php 
+<?php
+    }
 }
-?>                            
-                        </tbody>
+?>                    </tbody>
                     </table>
                 </div>
             </div>

@@ -22,13 +22,7 @@ class Order extends CI_Controller
         $this->load->model('product_model');
         $this->load->model('company_model');
         $this->load->model('order_model');
-    }
-    
-    public function ver_pedidos()
-    {
-        $datos['pedidos']=$this->order_model->traer_pedidos();
-        $this->load->view('order/pedidos_view',$datos);
-    }
+    }    
     
     public function ver_pedidos_empresa()
     {
@@ -72,37 +66,6 @@ class Order extends CI_Controller
         $items=$this->order_model->items_pedido();
         $this->order_model->registrar_pedido($fecha,$datos['usuario']['empresa'],$items);
         redirect('/order/ver_pedidos_empresa', 'refresh');
-    }
-    
-    public function ver_pedidos_solicitados()
-    {        
-        $datos['pedidos']=$this->order_model->traer_pedidos("1");
-        $this->load->view('order/pedidos_solicitados_view',$datos);        
-    }
-    
-    public function confirmar_pedido()
-    {
-        $pedido=$this->input->get('pedido');
-        $this->order_model->actualizar_estado_pedido($pedido,'2');
-        redirect('/order/ver_pedidos_solicitados', 'refresh');
-    }
-    
-    public function ver_pedidos_confirmados()
-    {        
-        $datos['pedidos']=$this->order_model->traer_pedidos("2");
-        $this->load->view('order/pedidos_confirmados_view',$datos);        
-    }
-
-    public function entregar_pedido()
-    {
-        $pedido=$this->input->get('pedido');
-        $this->order_model->actualizar_estado_pedido($pedido,'3');
-        redirect('/order/ver_pedidos_confirmados', 'refresh');        
-    }
-    
-    public function ver_pedidos_entregados()
-    {
-        $datos['pedidos']=$this->order_model->traer_pedidos("3");
-        $this->load->view('order/pedidos_view',$datos);       
     }    
+       
 }

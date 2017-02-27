@@ -1,27 +1,25 @@
-<?php $this->load->view("header_admin");  ?>       
+<?php $this->load->view("header_admin");  ?>      
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Usuarios</h1>
+                    <h1>Productos</h1>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Cedula</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Empresa</th>
+                                <th>Referencia</th>
+                                <th>Titulo</th>
+                                <th>Version</th>
                             </tr>
                         </thead>
                         <tbody>
 <?php
-foreach ($usuarios as $usuario)
+foreach ($productos as $producto)
 {
 ?>
                             <tr>
-                                <td><?=$usuario['cedula']?></td>
-                                <td><?=$usuario['nombre']?></td>
-                                <td><?=$usuario['email']?></td>
-                                <td><?=$usuario['razon_social']?></td>
+                                <td><?=$producto['referencia']?></td>
+                                <td><?=$producto['titulo']?></td>
+                                <td><?=$producto['version']?></td>
                             </tr>
 <?php 
 }

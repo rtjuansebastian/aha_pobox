@@ -32,24 +32,24 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="<?=  base_url()?>user/ver_perfil">Perfil<span class="sr-only">(current)</span></a></li>
-                                <li><a href="<?=  base_url()?>company/ver_empresa">Empresa</a></li>
-                                <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
-                                <li><a href="<?=  base_url()?>inventory/ver_inventario">Inventario</a></li>
+                                <li><a href="<?=  base_url()?>admin/ver_usuarios">Usuarios<span class="sr-only">(current)</span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_productos">Ver productos</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/agregar_producto">Agregar producto</a></li>
+                                    </ul>
+                                </li> 
+                                <li><a href="<?=  base_url()?>admin/ver_inventarios">Inventarios</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>order/ver_pedidos_empresa">Ver pedidos</a></li>
-                                        <li><a href="<?php echo base_url(); ?>order/hacer_pedido">Hacer pedido</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos">Ver pedidos</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_solicitados">Pedidos solicitados</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_confirmados">Pedidos confirmados</a></li>
                                     </ul>
-                                </li> 
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>sales/ver_ventas_empresa">Ver ventas</a></li>
-                                        <li><a href="<?php echo base_url(); ?>sales/hacer_venta">Hacer venta</a></li>
-                                    </ul>
-                                </li>                                 
+                                </li>                                  
+                                <li><a href="<?=  base_url()?>admin/ver_ventas">Ventas</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="<?php echo base_url(); ?>login/cerrar_sesion">Desconectar</a></li>            
