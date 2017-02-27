@@ -42,7 +42,7 @@ foreach ($pedidos as $pedido)
                         <tfoot>
                             <td></td>
                             <td></td>
-                            <td><a class="btn btn-success" href="<?=base_url()?>order/confirmar_pedido?pedido=<?=$pedido['numero_pedido']?>">Confirmar</a></td>
+                            <td><a class="btn btn-success" href="<?=base_url()?>admin/confirmar_pedido?pedido=<?=$pedido['numero_pedido']?>">Confirmar</a></td>
                         </tfoot>
                     </table>                    
 <?php
