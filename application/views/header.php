@@ -37,6 +37,7 @@
                                 <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
                                 <li><a href="<?=  base_url()?>inventory/ver_inventario">Inventario</a></li>
                                 <li><a href="<?=  base_url()?>order/ver_pedidos_empresa">Pedidos</a></li>
+                                <li><a href="<?=  base_url()?>sales/ver_ventas_empresa">Ventas</a></li>
                                 <!--
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos<span class="caret"></span></a>
