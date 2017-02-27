@@ -71,6 +71,38 @@ class Order extends CI_Controller
         $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);        
         $items=$this->order_model->items_pedido();
         $this->order_model->registrar_pedido($fecha,$datos['usuario']['empresa'],$items);
-        $this->ver_pedidos_empresa();
+        redirect('/order/ver_pedidos_empresa', 'refresh');
     }
+    
+    public function ver_pedidos_solicitados()
+    {        
+        $datos['pedidos']=$this->order_model->traer_pedidos("1");
+        $this->load->view('order/pedidos_solicitados_view',$datos);        
+    }
+    
+    public function confirmar_pedido()
+    {
+        $pedido=$this->input->get('pedido');
+        $this->order_model->actualizar_estado_pedido($pedido,'2');
+        redirect('/order/ver_pedidos_solicitados', 'refresh');
+    }
+    
+    public function ver_pedidos_confirmados()
+    {        
+        $datos['pedidos']=$this->order_model->traer_pedidos("2");
+        $this->load->view('order/pedidos_confirmados_view',$datos);        
+    }
+
+    public function entregar_pedido()
+    {
+        $pedido=$this->input->get('pedido');
+        $this->order_model->actualizar_estado_pedido($pedido,'3');
+        redirect('/order/ver_pedidos_confirmados', 'refresh');        
+    }
+    
+    public function ver_pedidos_entregados()
+    {
+        $datos['pedidos']=$this->order_model->traer_pedidos("3");
+        $this->load->view('order/pedidos_view',$datos);       
+    }    
 }

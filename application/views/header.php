@@ -37,6 +37,16 @@
                                 <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
                                 <li><a href="<?=  base_url()?>inventory/ver_inventario">Inventario</a></li>
                                 <li><a href="<?=  base_url()?>order/ver_pedidos_empresa">Pedidos</a></li>
+                                <!--
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>order/ver_pedidos_empresa">Ver todos los pedidos</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/clientes/proveedores">Proveedores</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/clientes/administradores">Administradores</a></li>                  
+                                    </ul>
+                                </li>               
+                                -->
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="<?php echo base_url(); ?>login/cerrar_sesion">Desconectar</a></li>            

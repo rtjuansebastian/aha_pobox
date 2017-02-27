@@ -24,13 +24,17 @@ class Order_model extends CI_Model
         parent::__construct();
     }
     
-    public function traer_pedidos()
+    public function traer_pedidos($estado=NULL)
     {
         $pedidos=array();
         $this->db->select('numero_pedido, fecha, razon_social, pedidos_estados.estado');
         $this->db->from('pedidos');
         $this->db->join('pedidos_estados','pedidos.estado=pedidos_estados.id');
         $this->db->join('empresas','pedidos.empresa=empresas.id');
+        if($estado)
+        {
+            $this->db->where('pedidos.estado',$estado);
+        }           
         $query=$this->db->get();
         
         if($query->num_rows()>0)
@@ -48,13 +52,17 @@ class Order_model extends CI_Model
         return $pedidos;
     }
     
-    public function traer_pedidos_empresa($empresa)
+    public function traer_pedidos_empresa($empresa,$estado=NULL)
     {
         $pedidos=array();
         $this->db->select('numero_pedido, fecha, pedidos_estados.estado');
         $this->db->from('pedidos');
         $this->db->join('pedidos_estados','pedidos.estado=pedidos_estados.id');
         $this->db->where('empresa',$empresa);
+        if($estado)
+        {
+            $this->db->where('pedidos.estado',$estado);
+        }        
         $query=$this->db->get();
         
         if($query->num_rows()>0)
@@ -151,4 +159,45 @@ class Order_model extends CI_Model
         
         $this->cart->destroy();
     }
+    
+    public function actualizar_estado_pedido($pedido,$estado)
+    {
+        $data = array(
+                      'estado' => $estado
+                   );
+
+       $this->db->where('numero_pedido', $pedido);
+       $this->db->update('pedidos', $data);    
+       
+       if($estado=='3')
+       {
+           $this->order_model->ingresar_pedido_inventario($pedido);
+       }
+    }
+    
+    public function ingresar_pedido_inventario($pedido)
+    {
+        $this->db->select('pedidos.empresa, pedidos_productos.producto, pedidos_productos.cantidad');
+        $this->db->from('pedidos_productos');
+        $this->db->join('pedidos','pedidos_productos.pedido=pedidos.numero_pedido');
+        $this->db->where('pedido',$pedido);
+        $query=$this->db->get();
+        
+        if($query->num_rows()>0)
+        {
+            foreach ($query->result() as $row)
+            {
+                $data = array(
+                   'empresa' => $row->empresa ,
+                   'producto' => $row->producto ,
+                   'cantidad' => $row->cantidad,
+                   'fecha'  => date('Y-m-d'),
+                   'ingreso_salida'  => 'I'
+                );
+
+                $this->db->insert('inventarios', $data);                 
+            }
+        }
+    }
+
 }
