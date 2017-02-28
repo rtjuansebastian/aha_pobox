@@ -18,6 +18,8 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('login_model');
+        $this->load->model('user_model');
+        $this->load->model('company_model');
     }    
 
     /**
@@ -45,8 +47,10 @@ class Login extends CI_Controller
         $datos['validacion']=$validacion;
         
         if($validacion)
-        {            
-            $this->login_model->crear_sesion($cedula);
+        {
+            $usuario=$this->user_model->traer_usuario($cedula);
+            $empresa=$this->company_model->traer_empresa($usuario['empresa']);
+            $this->login_model->crear_sesion($cedula,$empresa['rol']);
             redirect(base_url('index'));
         }
         else

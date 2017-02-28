@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Hacer pedido</h1>
+                    <h1>Realizar orden de compra</h1>
                     <div class="form-group">
                         <label for="producto">Producto</label>
                         <select class="form-control selectpicker" id="producto" data-live-search="true" data-dropup-Auto="false">
@@ -25,7 +25,7 @@ foreach ($productos as $producto)
                     </div>                    
                 </div>                
                 <div class="col-md-6">
-                    <h1>Resumen pedido</h1>
+                    <h1>Resumen de orden de compra</h1>
                     <label>Productos</label>
                     <table class="table table-bordered">
                         <thead>

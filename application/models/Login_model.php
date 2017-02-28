@@ -78,11 +78,12 @@ class Login_model extends CI_Model
             return crypt($pass, $hash) == $hash;
     }
     
-    public function crear_sesion($cedula)
+    public function crear_sesion($cedula,$empresa_rol)
     {
         $acceso = array(
-               'cedula'  => $cedula,
-               'logged_in' => TRUE
+                'cedula'  => $cedula,
+                'logged_in' => TRUE,
+                'rol' => $empresa_rol
            );
 
         $this->session->set_userdata('sesion',$acceso);         

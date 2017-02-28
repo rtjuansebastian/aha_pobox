@@ -44,6 +44,7 @@ class Company_model extends CI_Model
                 $empresas[$row->id]['celular']=$row->celular;
                 $empresas[$row->id]['contacto']=$row->contacto;
                 $empresas[$row->id]['direccion']=$row->direccion;
+                $empresas[$row->id]['rol']=$row->rol;
             }            
         }
         
@@ -69,7 +70,8 @@ class Company_model extends CI_Model
             $empresa['extension']=$row->extension;
             $empresa['celular']=$row->celular;
             $empresa['contacto']=$row->contacto;
-            $empresa['direccion']=$row->direccion;            
+            $empresa['direccion']=$row->direccion;
+            $empresa['rol']=$row->rol;            
         }
         
         return $empresa;
