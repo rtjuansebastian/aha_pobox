@@ -2,12 +2,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Hacer Venta</h1>
+                    <h1>Registrar salida de inventario</h1>
                     <div class="form-group">
                         <label for="producto">Producto</label>
                         <select class="form-control selectpicker" id="producto" data-live-search="true" data-dropup-Auto="false">
 <?php
-$cantidad=array();;
+$cantidad=array();
 foreach ($inventario as $producto) 
 {
     $cantidad[]=$producto['cantidad'];
@@ -20,14 +20,14 @@ foreach ($inventario as $producto)
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad</label>
-                        <input type="number" class="form-control" name="cantidad" id="cantidad" min="0" max="<?=$cantidad[0]?>" value="1"/>
+                        <input type="number" class="form-control" name="cantidad" id="cantidad" min="0" max="<?phpif(isset($cantidad[0])){echo $cantidad[0]}?>" value="1"/>
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-primary" id="agregar_producto">Agregar</button>
                     </div>                    
                 </div>                
                 <div class="col-md-6">
-                    <h1>Resumen venta</h1>
+                    <h1>Resumen salida de inventario</h1>
                     <label>Productos</label>
                     <table class="table table-bordered">
                         <thead>

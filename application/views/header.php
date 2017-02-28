@@ -37,17 +37,17 @@
                                 <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
                                 <li><a href="<?=  base_url()?>inventory/ver_inventario">Inventario</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>order/ver_pedidos_empresa">Ver pedidos</a></li>
-                                        <li><a href="<?php echo base_url(); ?>order/hacer_pedido">Hacer pedido</a></li>
+                                        <li><a href="<?php echo base_url(); ?>order/ver_pedidos_empresa">Ver ordenes</a></li>
+                                        <li><a href="<?php echo base_url(); ?>order/hacer_pedido">Realizar orden de compra</a></li>
                                     </ul>
                                 </li> 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Salidas<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>sales/ver_ventas_empresa">Ver ventas</a></li>
-                                        <li><a href="<?php echo base_url(); ?>sales/hacer_venta">Hacer venta</a></li>
+                                        <li><a href="<?php echo base_url(); ?>sales/ver_ventas_empresa">Ver salidas</a></li>
+                                        <li><a href="<?php echo base_url(); ?>sales/hacer_venta">Registrar salida de inventario</a></li>
                                     </ul>
                                 </li>                                 
                             </ul>
