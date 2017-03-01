@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Salidas de inventario</h1>
-                    <table class="table">
+                    <table class="table tablesorter-default" id="tabla_ventas">
                         <thead>
                             <tr>
                                 <th>Referencia</th>                                
@@ -14,6 +14,7 @@
                         </thead>
                         <tbody>
 <?php
+$total=0;
 foreach ($ventas as $venta)
 {
 ?>
@@ -24,11 +25,26 @@ foreach ($ventas as $venta)
                                 <td><?=$venta['fecha']?></td>
                             </tr>
 <?php 
+$total+=$venta['cantidad'];
 }
 ?>                            
                         </tbody>
+                        <tfoot>
+                            <tr class="active">
+                                <td>Total</td>
+                                <td></td>
+                                <td><?=$total?></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>                        
                     </table>
                 </div>
             </div>
         </div>
 <?php $this->load->view("footer");  ?>  
+        <script>
+            $(document).ready(function() 
+            {
+                $("#tabla_ventas").tablesorter(); 
+            });
+        </script>

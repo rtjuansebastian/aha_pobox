@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="<?=  base_url()?>assets/css/estilos.css" />
         <link rel="stylesheet" href="<?=  base_url()?>assets/css/bootstrap-select.css" />
         <link rel="stylesheet" href="<?=  base_url()?>assets/css/tablesorter.css" />
+        <link rel="stylesheet" href="<?=  base_url()?>assets/css/daterangepicker.css" />
         <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />
     </head>
     <body>

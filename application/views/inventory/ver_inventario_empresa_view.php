@@ -3,7 +3,33 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Inventario</h1>
-                    <table class="table">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="producto">Producto</label>
+                            <select class="form-control selectpicker" data-live-search="true" data-dropup-Auto="false">
+                                <option value=""></option>
+<?php
+foreach ($inventario as $producto)
+{
+?>
+                                <option value="<?=$producto['referencia']?>"><?=$producto['titulo']?></option>
+<?php 
+}
+?>                                  
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="daterange">Periodo</label>
+                            <br>
+                            <input type="text" class="form-control" name="daterange" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label></label>
+                            <br>
+                            <button type="submit" class="btn btn-default">Filtrar</button>
+                        </div>
+                    </form>
+                    <table class="table tablesorter-default" id="tabla_inventarios">
                         <thead>
                             <tr>
                                 <th>Referencia</th>
@@ -13,6 +39,7 @@
                         </thead>
                         <tbody>
 <?php
+$total=0;
 foreach ($inventario as $producto)
 {
 ?>
@@ -22,11 +49,50 @@ foreach ($inventario as $producto)
                                 <td><?=$producto['cantidad']?></td>                           
                             </tr>
 <?php 
+$total+=$producto['cantidad'];
 }
 ?>                            
                         </tbody>
+                        <tfoot>
+                            <tr class="active">
+                                <td>Total</td>
+                                <td></td>
+                                <td><?=$total?></td>
+                            </tr>
+                        </tfoot>                         
                     </table>
                 </div>
             </div>
         </div>
 <?php $this->load->view("footer");  ?>  
+        <script>
+            $(document).ready(function() 
+            {
+                $("#tabla_inventarios").tablesorter(); 
+            });
+            
+            $(function() {
+                $('input[name="daterange"]').daterangepicker({
+                "locale": {
+                       "format": "DD/MM/YYYY",
+                       "separator": " - ",
+                       "applyLabel": "Seleccionar",
+                       "cancelLabel": "Cancelar",
+                       "fromLabel": "Desde",
+                       "toLabel": "Hasta",
+                       "customRangeLabel": "Custom",
+                       "weekLabel": "W",
+                       "daysOfWeek": ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                       "monthNames": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+                   }
+                });
+            });
+            
+            $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            });
+
+            $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });            
+        </script>

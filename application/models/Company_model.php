@@ -37,6 +37,7 @@ class Company_model extends CI_Model
         {
             foreach ($query->result() as $row)
             {
+                $empresas[$row->id]['id']=$row->id;
                 $empresas[$row->id]['nit']=$row->nit;
                 $empresas[$row->id]['razon_social']=$row->razon_social;
                 $empresas[$row->id]['telefono']=$row->telefono;
@@ -77,5 +78,13 @@ class Company_model extends CI_Model
         return $empresa;
     }
 
-    
+    public function editar_campo_empresa($empresa,$campo,$valor)
+    {
+        $data = array(
+               $campo => $valor
+        );
+
+        $this->db->where('id', $empresa);
+        $this->db->update('empresas', $data);         
+    }
 }

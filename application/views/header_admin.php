@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="<?=  base_url()?>assets/css/estilos.css" />
         <link rel="stylesheet" href="<?=  base_url()?>assets/css/bootstrap-select.css" />
         <link rel="stylesheet" href="<?=  base_url()?>assets/css/tablesorter.css" />
+        <link rel="stylesheet" href="<?=  base_url()?>assets/css/daterangepicker.css" />
         <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />
     </head>
     <body>
@@ -42,14 +43,14 @@
                                 </li> 
                                 <li><a href="<?=  base_url()?>admin/ver_inventarios">Inventarios</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos">Ver pedidos</a></li>
-                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_solicitados">Pedidos solicitados</a></li>
-                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_confirmados">Pedidos confirmados</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos">Ver ordenes de compra</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_solicitados">Ordenes solicitadas</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_confirmados">Ordenes confirmadas</a></li>
                                     </ul>
                                 </li>                                  
-                                <li><a href="<?=  base_url()?>admin/ver_ventas">Ventas</a></li>
+                                <li><a href="<?=  base_url()?>admin/ver_ventas">Salidas</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="<?php echo base_url(); ?>login/cerrar_sesion">Desconectar</a></li>            

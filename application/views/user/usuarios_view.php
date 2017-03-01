@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Usuarios</h1>
-                    <table class="table">
+                    <table class="table tablesorter-default" id="tabla_usuarios">
                         <thead>
                             <tr>
                                 <th>Cedula</th>
@@ -32,3 +32,9 @@ foreach ($usuarios as $usuario)
             </div>
         </div>
 <?php $this->load->view("footer");  ?>  
+        <script>
+            $(document).ready(function() 
+            {
+                $("#tabla_usuarios").tablesorter(); 
+            });
+        </script>

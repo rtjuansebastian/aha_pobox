@@ -24,15 +24,19 @@ class Inventory_model extends CI_Model
         parent::__construct();
     }
     
-    public function traer_inventarios()
+    public function traer_inventarios($empresa=NULL,$producto=NULL,$fecha_inicial=NULL,$fecha_final=NULL)
     {
         $inventarios=array();
         $this->db->select('razon_social, referencia, titulo, SUM(CASE ingreso_salida WHEN "I" THEN cantidad WHEN "S" THEN -cantidad END) as cantidad');
+        $this->db->from('inventarios');
         $this->db->join('empresas','inventarios.empresa=empresas.id');
         $this->db->join('productos','inventarios.producto=productos.referencia');
+        if($empresa){$this->db->where('empresa',$empresa);}
+        if($producto){$this->db->where('producto',$producto);}
+        if($fecha_inicial && $fecha_final){$this->db->where('fecha >=',$fecha_inicial); $this->db->where('fecha <=',$fecha_final);}
         $this->db->group_by("empresa, producto");
         $this->db->order_by("empresa, producto");
-        $query=$this->db->get('inventarios');
+        $query=$this->db->get();
         if($query->num_rows()>0)
         {
             $i=0;

@@ -72,7 +72,23 @@ class Admin extends CI_Controller
     public function ver_inventarios()
     {
         $datos['inventarios']=$this->inventory_model->traer_inventarios();
+        $datos['empresas']=$this->company_model->traer_empresas();
+        $datos['productos']=$this->product_model->traer_productos();
         $this->load->view('inventory/inventarios_view',$datos);
+    }
+    
+    public function filtrar_inventarios()
+    {
+        $empresa=null;
+        $producto=null;
+        if($this->input->post('empresa')!==''){$empresa=$this->input->post('empresa');}
+        if($this->input->post('producto')!==''){$producto=$this->input->post('producto');}
+        $rango=$this->input->post('daterange');
+        $fecha=  explode("-", $rango);
+        $datos['inventarios']=$this->inventory_model->traer_inventarios($empresa,$producto,trim($fecha[0]),trim($fecha[1]));
+        $datos['empresas']=$this->company_model->traer_empresas();
+        $datos['productos']=$this->product_model->traer_productos();
+        $this->load->view('inventory/inventarios_view',$datos);        
     }
 
     public function ver_pedidos()

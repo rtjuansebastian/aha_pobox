@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Productos</h1>
-                    <table class="table">
+                    <table class="table tablesorter-default" id="tabla_productos">
                         <thead>
                             <tr>
                                 <th>Referencia</th>
@@ -33,8 +33,9 @@ foreach ($productos as $producto)
         <script>
             $(document).ready(function() 
             {
+                $("#tabla_productos").tablesorter(); 
 		var td,campo,valor,id;
-		$(document).on("click","td.editable span",function(e)
+		$(document).on("click","td.editable",function(e)
 		{
                     e.preventDefault();
                     $("td:not(.id)").removeClass("editable");

@@ -29,4 +29,13 @@ class Company extends CI_Controller
         $datos['empresa']=$this->company_model->traer_empresa($datos['usuario']['empresa']);
         $this->load->view('company/ver_empresa_usuario_view',$datos);
     }
+    
+    public function editar_campo_empresa()
+    {
+        $campo=  $this->input->post('campo');
+        $valor=  $this->input->post('valor');
+        $usuario=$this->session->userdata('sesion'); 
+        $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);
+        $this->company_model->editar_campo_empresa($datos['usuario']['empresa'],$campo,$valor);
+    }
 }
