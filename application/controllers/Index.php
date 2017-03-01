@@ -74,8 +74,15 @@ class Index extends CI_Controller
             foreach ($lineas as $linea)
             {
                 $pos = strpos($linea, ":");
-                $descriptor[0]= substr($linea, 0, $pos);
-                $descriptor[1]= substr($linea, $pos+1);
+                if($pos)
+                {
+                    $descriptor[0]= substr($linea, 0, $pos);                
+                    $descriptor[1]= substr($linea, $pos+1);
+                }
+                else 
+                {
+                    $descriptor[0]=$linea;
+                }
                 //$descriptor=  explode(":", $linea);
                 if(isset($descriptor[1]))
                 {
@@ -83,8 +90,9 @@ class Index extends CI_Controller
                 }
                 else
                 {
-                    $descripciones[$descriptor[0]]="revisar";
+                    $descripciones[$descriptor[0]]="";
                 }
+                unset($descriptor);
             }
             $productos[$registro['CODIGO DEL PRODUCTO']]['descripciones']=$descripciones;
         }
