@@ -49,3 +49,15 @@ a.enlace
 
 .cancelar
 {background:url(../img/cancel.png) 0 0 no-repeat;}
+
+.size_ref{
+  width: 10%;
+}
+
+.size_fec{
+  width: 60%;
+}
+
+.size_est{
+  width: 30%;
+}

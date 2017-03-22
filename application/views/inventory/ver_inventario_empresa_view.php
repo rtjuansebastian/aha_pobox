@@ -27,6 +27,7 @@ foreach ($inventario as $producto)
                             <label></label>
                             <br>
                             <button type="button" class="btn btn-default" id="filtrar_inventario">Filtrar</button>
+                            <button type="button" class="btn btn-default" id="deshacer_filtros">Deshacer filtros</button>
                         </div>
                     </form>
                     <table class="table tablesorter-default" id="tabla_inventarios">
@@ -57,7 +58,7 @@ $total+=$producto['cantidad'];
                             <tr class="active">
                                 <td>Total</td>
                                 <td></td>
-                                <td><?=$total?></td>
+                                <td id="total"><?=$total?></td>
                             </tr>
                         </tfoot>                         
                     </table>
@@ -69,7 +70,9 @@ $total+=$producto['cantidad'];
             $(document).ready(function() 
             {
                 $("#tabla_inventarios").tablesorter(); 
-                
+                $("#deshacer_filtros").click(function(){
+                   location.reload(); 
+                });
                 $("#filtrar_inventario").click(function(){
                     var dataString = $('#form_filtrar').serialize();                    
                     $.ajax({
@@ -80,14 +83,17 @@ $total+=$producto['cantidad'];
                         {
                             var result= $.parseJSON(data);
                             var inventario='';
+                            var total=0;
                             $.each(result, function( llave, items) {
                                 inventario+=    '<tr>'+
                                                     '<td>'+items.referencia+'</td>'+
                                                     '<td>'+items.titulo+'</td>'+
                                                     '<td>'+items.cantidad+'</td> '+                          
                                                 '</tr>';
+                                total+=parseInt(items.cantidad);
                             });
                             $("#inventario").html(inventario);
+                            $("#total").html(total);
                         }
                     });                       
                 });
@@ -111,7 +117,7 @@ $total+=$producto['cantidad'];
             });
             
             $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' / ' + picker.endDate.format('YYYY-MM-DD'));
             });
 
             $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
