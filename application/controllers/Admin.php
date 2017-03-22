@@ -85,13 +85,13 @@ class Admin extends CI_Controller
         if($this->input->post('empresa')!==''){$empresa=$this->input->post('empresa');}
         if($this->input->post('producto')!==''){$producto=$this->input->post('producto');}
         $rango=$this->input->post('daterange');
-        $fecha=  explode("-", $rango);
+        $fecha=  explode("/", $rango);
         $datos['inventarios']=$this->inventory_model->traer_inventarios($empresa,$producto,trim($fecha[0]),trim($fecha[1]));
         $datos['empresas']=$this->company_model->traer_empresas();
         $datos['productos']=$this->product_model->traer_productos();
         $this->load->view('inventory/inventarios_view',$datos);        
     }
-
+       
     public function ver_pedidos()
     {
         $datos['pedidos']=$this->order_model->traer_pedidos();
@@ -132,9 +132,22 @@ class Admin extends CI_Controller
     
     public function ver_ventas()
     {
+        $datos['empresas']=  $this->company_model->traer_empresas();
         $datos['ventas']=  $this->sales_model->traer_ventas();
         $this->load->view('sales/ver_ventas_view',$datos);        
     }
+    
+    public function filtrar_ventas()
+    {
+        $empresa=null;
+        $producto=null;
+        if($this->input->post('empresa')!==''){$empresa=$this->input->post('empresa');}
+        if($this->input->post('producto')!==''){$producto=$this->input->post('producto');}
+        $rango=$this->input->post('daterange');
+        $fecha=  explode("/", $rango);
+        $ventas=$this->sales_model->traer_ventas($empresa,$producto,trim($fecha[0]),trim($fecha[1]));               
+        echo json_encode($ventas);
+    } 
     
     public function agregar_usuario()
     {

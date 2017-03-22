@@ -24,13 +24,16 @@ class Sales_model extends CI_Model
         parent::__construct();
     }
     
-    public function traer_ventas()
+    public function traer_ventas($empresa=NULL,$producto=NULL,$fecha_inicial=NULL,$fecha_final=NULL)
     {
         $ventas=array();
         $this->db->select("inventarios.id, inventarios.empresa, empresas.razon_social, inventarios.producto, productos.titulo, inventarios.cantidad, inventarios.fecha");
         $this->db->from('inventarios');
         $this->db->join('productos',"inventarios.producto=productos.referencia");        
-        $this->db->join('empresas',"inventarios.empresa=empresas.id");    
+        $this->db->join('empresas',"inventarios.empresa=empresas.id");  
+        if($empresa){$this->db->where('empresa',$empresa);}
+        if($producto){$this->db->where('producto',$producto);}
+        if($fecha_inicial && $fecha_final){$this->db->where('fecha >=',$fecha_inicial); $this->db->where('fecha <=',$fecha_final);}        
         $query= $this->db->get();
         if($query->num_rows()>0)
         {
@@ -48,7 +51,7 @@ class Sales_model extends CI_Model
     }
 
 
-    public function traer_ventas_empresa($empresa)
+    public function traer_ventas_empresa($empresa,$producto=NULL,$fecha_inicial=NULL,$fecha_final=NULL)
     {
         $ventas=array();
         $this->db->select("inventarios.id, inventarios.producto, productos.titulo, inventarios.cantidad, inventarios.fecha");
@@ -56,6 +59,8 @@ class Sales_model extends CI_Model
         $this->db->join('productos',"inventarios.producto=productos.referencia");
         $this->db->where('empresa',$empresa);
         $this->db->where('ingreso_salida','S');
+        if($fecha_inicial && $fecha_final){$this->db->where('fecha >=',$fecha_inicial); $this->db->where('fecha <=',$fecha_final);}        
+        if($producto){$this->db->where('producto',$producto);}        
         $query=$this->db->get();
         if($query->num_rows()>0)
         {
