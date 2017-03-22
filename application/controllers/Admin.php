@@ -24,6 +24,7 @@ class Admin extends CI_Controller
         $this->load->model('order_model');
         $this->load->model('sales_model');
         $this->load->model('inventory_model');
+        $this->load->model('login_model');
     }
     
     public function index()
@@ -133,5 +134,19 @@ class Admin extends CI_Controller
     {
         $datos['ventas']=  $this->sales_model->traer_ventas();
         $this->load->view('sales/ver_ventas_view',$datos);        
+    }
+    
+    public function agregar_usuario()
+    {
+        $datos['empresas']=$this->company_model->traer_empresas();
+        $this->load->view('user/agregar_usuario_view',$datos);  
+    }
+    
+    public function crear_usuario()
+    {
+        $usuario=$this->input->post();
+        $usuario['password']=$this->login_model->get_hash($usuario['password']);
+        $this->user_model->crear_usuario($usuario);
+        redirect('/admin/ver_usuarios', 'refresh');
     }
 }

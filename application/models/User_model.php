@@ -86,4 +86,9 @@ class User_model extends CI_Model
         $this->db->where('cedula', $cedula);
         $this->db->update('usuarios', $data); 
     }
+    
+    public function crear_usuario($usuario)
+    {        
+        $this->db->insert('usuarios', $usuario); 
+    }    
 }
