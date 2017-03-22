@@ -49,6 +49,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>sales/ver_ventas_empresa">Ver salidas</a></li>
                                         <li><a href="<?php echo base_url(); ?>sales/hacer_venta">Registrar salida de inventario</a></li>
+                                        <li><a href="<?php echo base_url(); ?>sales/ver_promedio_ventas_empresa">Ver promedio salidas de inventario</a></li>
                                     </ul>
                                 </li>                                 
                             </ul>

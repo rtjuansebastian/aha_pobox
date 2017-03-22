@@ -87,6 +87,65 @@ class Sales_model extends CI_Model
         }
         
         $this->cart->destroy();
-    }    
+    }
+
+    public function traer_promedio_ventas_empresa($empresa)
+    {
+        $promedios=array();
+        $this->db->select("producto, COUNT(producto) as cantidad, MONTH(fecha) as mes");
+        $this->db->from("inventarios");
+        $this->db->where("empresa",$empresa);
+        $this->db->where('ingreso_salida','S');
+        $this->db->group_by("producto, mes");
+        $query=  $this->db->get();
+        foreach ($query->result() as $row)
+        {
+            $promedios[$row->producto]['producto']=$row->producto;
+            $promedios[$row->producto]['count']=0;
+            $promedios[$row->producto]['total']=0;
+            $promedios[$row->producto]['mes'][$row->mes]['cantidad']=$row->cantidad;
+        }
+        
+        foreach ($promedios as $producto=>$promedio)
+        {
+            for($i=1;$i<=12;$i++)
+            {
+                if(!isset($promedio['mes'][$i]['cantidad']))
+                {
+                    $promedios[$producto]['mes'][$i]['cantidad']=0;
+                }
+                else
+                {
+                    $promedios[$producto]['count']++;
+                    $promedios[$producto]['total']+=$promedio['mes'][$i]['cantidad'];
+                    if(!isset($promedios[$producto]['min']))
+                    {
+                        $promedios[$producto]['min']=$promedio['mes'][$i]['cantidad'];
+                    }
+                    else
+                    {
+                        if($promedio['mes'][$i]['cantidad']<$promedios[$producto]['min'])
+                        {
+                            $promedios[$producto]['min']=$promedio['mes'][$i]['cantidad'];
+                        }
+                    }
+                    
+                    if(!isset($promedios[$producto]['max']))
+                    {
+                        $promedios[$producto]['max']=$promedio['mes'][$i]['cantidad'];
+                    }
+                    else
+                    {
+                        if($promedio['mes'][$i]['cantidad']>$promedios[$producto]['max'])
+                        {
+                            $promedios[$producto]['max']=$promedio['mes'][$i]['cantidad'];
+                        }
+                    }                    
+                }
+            }
+        }
+        
+        return $promedios;
+    }
             
 }

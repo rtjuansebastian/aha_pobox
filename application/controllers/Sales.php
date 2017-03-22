@@ -51,4 +51,13 @@ class Sales extends CI_Controller
         $this->sales_model->registrar_venta($fecha,$datos['usuario']['empresa'],$items);
         redirect('/sales/ver_ventas_empresa', 'refresh');        
     }
+    
+    public function ver_promedio_ventas_empresa()
+    {
+        $usuario=$this->session->userdata('sesion'); 
+        $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);        
+        $datos['promedios']=$this->sales_model->traer_promedio_ventas_empresa($datos['usuario']['empresa']);
+        $datos['inventario']=$this->inventory_model->traer_inventario($datos['usuario']['empresa']);
+        $this->load->view('sales/ver_promedio_ventas_empresa_view',$datos);
+    }
 }

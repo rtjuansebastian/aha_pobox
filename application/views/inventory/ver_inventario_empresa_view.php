@@ -3,10 +3,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Inventario</h1>
-                    <form class="form-inline">
+                    <form class="form-inline" id="form_filtrar">
                         <div class="form-group">
                             <label for="producto">Producto</label>
-                            <select class="form-control selectpicker" data-live-search="true" data-dropup-Auto="false">
+                            <select class="form-control selectpicker" data-live-search="true" data-dropup-Auto="false" name="producto">
                                 <option value=""></option>
 <?php
 foreach ($inventario as $producto)
@@ -26,7 +26,7 @@ foreach ($inventario as $producto)
                         <div class="form-group">
                             <label></label>
                             <br>
-                            <button type="submit" class="btn btn-default">Filtrar</button>
+                            <button type="button" class="btn btn-default" id="filtrar_inventario">Filtrar</button>
                         </div>
                     </form>
                     <table class="table tablesorter-default" id="tabla_inventarios">
@@ -37,7 +37,7 @@ foreach ($inventario as $producto)
                                 <th>Cantidad</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="inventario">
 <?php
 $total=0;
 foreach ($inventario as $producto)
@@ -69,13 +69,35 @@ $total+=$producto['cantidad'];
             $(document).ready(function() 
             {
                 $("#tabla_inventarios").tablesorter(); 
+                
+                $("#filtrar_inventario").click(function(){
+                    var dataString = $('#form_filtrar').serialize();                    
+                    $.ajax({
+                        type: "POST",
+                        url: "<?=  base_url()?>inventory/filtrar_inventario",
+                        data: dataString,
+                        success: function (data)
+                        {
+                            var result= $.parseJSON(data);
+                            var inventario='';
+                            $.each(result, function( llave, items) {
+                                inventario+=    '<tr>'+
+                                                    '<td>'+items.referencia+'</td>'+
+                                                    '<td>'+items.titulo+'</td>'+
+                                                    '<td>'+items.cantidad+'</td> '+                          
+                                                '</tr>';
+                            });
+                            $("#inventario").html(inventario);
+                        }
+                    });                       
+                });
             });
             
             $(function() {
                 $('input[name="daterange"]').daterangepicker({
                 "locale": {
-                       "format": "DD/MM/YYYY",
-                       "separator": " - ",
+                       "format": "YYYY-MM-DD",
+                       "separator": " / ",
                        "applyLabel": "Seleccionar",
                        "cancelLabel": "Cancelar",
                        "fromLabel": "Desde",

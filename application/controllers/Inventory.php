@@ -29,5 +29,17 @@ class Inventory extends CI_Controller
         $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);       
         $datos['inventario']=$this->inventory_model->traer_inventario($datos['usuario']['empresa']);
         $this->load->view('inventory/ver_inventario_empresa_view',$datos);
+    } 
+    
+    public function filtrar_inventario()
+    {
+        $usuario=$this->session->userdata('sesion'); 
+        $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);               
+        $producto=null;
+        if($this->input->post('producto')!==''){$producto=$this->input->post('producto');}
+        $rango=$this->input->post('daterange');
+        $fecha=  explode("/", $rango);
+        $inventario=$this->inventory_model->traer_inventario($datos['usuario']['empresa'],$producto,$fecha[0],$fecha[1]);
+        echo json_encode($inventario);
     }    
 }

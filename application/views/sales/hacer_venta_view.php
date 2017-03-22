@@ -64,7 +64,7 @@ foreach ($this->cart->contents() as $items)
                     </table>
                 </div>
                 <div class="col-md-6 col-md-offset-3">
-                    <h1 class="text-center">Fecha de la venta</h1>
+                    <h1 class="text-center">Fecha de salida</h1>
                     <form method="post" action="<?=base_url()?>sales/registrar_venta">
                         <div class="form-group">
                             <div style="overflow:hidden;">
@@ -77,7 +77,7 @@ foreach ($this->cart->contents() as $items)
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success">Hacer Venta</button>
+                                <button type="submit" class="btn btn-success">Registrar salida</button>
                             </div>
                         </div>
                     </form>

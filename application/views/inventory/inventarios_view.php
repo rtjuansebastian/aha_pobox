@@ -92,8 +92,8 @@ $total+=$inventario['cantidad'];
             $(function() {
                 $('input[name="daterange"]').daterangepicker({
                 "locale": {
-                       "format": "YYYY/MM/DD",
-                       "separator": " - ",
+                       "format": "YYYY-MM-DD",
+                       "separator": " / ",
                        "applyLabel": "Seleccionar",
                        "cancelLabel": "Cancelar",
                        "fromLabel": "Desde",
