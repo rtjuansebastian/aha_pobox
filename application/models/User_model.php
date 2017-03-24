@@ -22,6 +22,7 @@ class User_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->model("login_model");
     }
     
     /**
@@ -90,5 +91,34 @@ class User_model extends CI_Model
     public function crear_usuario($usuario)
     {        
         $this->db->insert('usuarios', $usuario); 
-    }    
+    }
+
+    public function cambiar_contrasena($cedula,$anterior,$nueva)
+    {
+        $validacion=FALSE;  
+        $this->db->where('cedula',$cedula);
+        $query=$this->db->get('usuarios');
+        if($query->num_rows()>0)
+        {
+            $row=$query->row();
+            $hash=$row->password;            
+            //$hash = $this->login_model->get_hash($password);
+            
+            $validacion = $this->login_model->validate_pass($hash, $anterior);
+            if($validacion)
+            {
+                $nuevo_hash=$this->login_model->get_hash($nueva);
+                $data = array(
+                               'password' => $nuevo_hash
+                            );
+
+                $this->db->where('cedula', $cedula);
+                $this->db->update('usuarios', $data);                 
+                
+                return TRUE;
+            }
+        }
+        
+        return FALSE;
+    }
 }

@@ -35,4 +35,24 @@ class User extends CI_Controller
         $valor= $this->input->post('valor');
         $this->user_model->editar_campo_usuario($usuario['cedula'],$campo,$valor);
     }
+    
+    public function cambiar_contrasena()
+    {
+        if($this->input->post())
+        {
+            $anterior=  $this->input->post('anterior');
+            $nueva=  $this->input->post('nueva');
+            $cedula= $this->input->post('cedula');
+            $datos['resultado']=$this->user_model->cambiar_contrasena($cedula,$anterior,$nueva);
+            $usuario=$this->session->userdata('sesion');             
+            $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);                        
+            $this->load->view('user/cambiar_contrasena_view',$datos);
+        }
+        else 
+        {
+            $usuario=$this->session->userdata('sesion'); 
+            $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);        
+            $this->load->view('user/cambiar_contrasena_view',$datos);
+        }
+    }
 }

@@ -33,7 +33,13 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="<?=  base_url()?>user/ver_perfil">Perfil<span class="sr-only">(current)</span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>user/ver_perfil">Ver/editar</a></li>
+                                        <li><a href="<?php echo base_url(); ?>user/cambiar_contrasena">Cambiar contraseña</a></li>
+                                    </ul>
+                                </li>                                 
                                 <li><a href="<?=  base_url()?>company/ver_empresa">Empresa</a></li>
                                 <li><a href="<?=  base_url()?>product/ver_productos">Productos</a></li>
                                 <li><a href="<?=  base_url()?>inventory/ver_inventario">Inventario</a></li>
