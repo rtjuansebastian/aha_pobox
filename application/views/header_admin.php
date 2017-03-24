@@ -59,8 +59,13 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>admin/ver_pedidos">Ver ordenes de compra</a></li>
+                                        <li role="separator" class="divider"></li>
                                         <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_solicitados">Ordenes solicitadas</a></li>
                                         <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_confirmados">Ordenes confirmadas</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_en_proceso">Ordenes en proceso</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_entregados">Ordenes entregados</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/crear_orden">Crear Orden</a></li>
                                     </ul>
                                 </li>                                  
                                 <li><a href="<?=  base_url()?>admin/ver_ventas">Salidas</a></li>

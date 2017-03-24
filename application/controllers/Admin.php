@@ -129,12 +129,25 @@ class Admin extends CI_Controller
         $datos['pedidos']=$this->order_model->traer_pedidos("2");
         $this->load->view('order/pedidos_confirmados_view',$datos);        
     }
+    
+    public function procesar_pedido()
+    {
+        $pedido=$this->input->get('pedido');
+        $this->order_model->actualizar_estado_pedido($pedido,'4');
+        redirect('/admin/ver_pedidos_confirmados', 'refresh');        
+    }
+    
+    public function ver_pedidos_en_proceso()
+    {
+        $datos['pedidos']=$this->order_model->traer_pedidos("4");
+        $this->load->view('order/pedidos_en_proceso_view',$datos);       
+    }    
 
     public function entregar_pedido()
     {
         $pedido=$this->input->get('pedido');
         $this->order_model->actualizar_estado_pedido($pedido,'3');
-        redirect('/admin/ver_pedidos_confirmados', 'refresh');        
+        redirect('/admin/ver_pedidos_en_proceso', 'refresh');        
     }
     
     public function ver_pedidos_entregados()

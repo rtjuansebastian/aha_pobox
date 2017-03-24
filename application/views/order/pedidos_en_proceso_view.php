@@ -1,4 +1,4 @@
-<?php $this->load->view("header_admin");  ?>    
+<?php $this->load->view("header_admin");  ?>      
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -42,7 +42,7 @@ foreach ($pedidos as $pedido)
                         <tfoot>
                             <td></td>
                             <td></td>
-                            <td><a class="btn btn-success" href="<?=base_url()?>admin/procesar_pedido?pedido=<?=$pedido['numero_pedido']?>">En proceso</a></td>
+                            <td><a class="btn btn-success" href="<?=base_url()?>admin/entregar_pedido?pedido=<?=$pedido['numero_pedido']?>">Entregar</a></td>
                         </tfoot>
                     </table>                    
 <?php
