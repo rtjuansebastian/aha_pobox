@@ -33,7 +33,7 @@ class User_model extends CI_Model
     public function traer_usuarios()
     {
         $usuarios=array();
-        $this->db->select('cedula, nombre, email, empresa, razon_social');
+        $this->db->select('cedula, nombre, email, celular, empresa, razon_social');
         $this->db->from('usuarios');
         $this->db->join('empresas','usuarios.empresa=empresas.id');
         $query=$this->db->get();
@@ -44,6 +44,7 @@ class User_model extends CI_Model
                 $usuarios[$row->cedula]['cedula']=$row->cedula;
                 $usuarios[$row->cedula]['nombre']=$row->nombre;
                 $usuarios[$row->cedula]['email']=$row->email;
+                $usuarios[$row->cedula]['celular']=$row->celular;
                 $usuarios[$row->cedula]['empresa']=$row->empresa;
                 $usuarios[$row->cedula]['razon_social']=$row->razon_social;
             }
@@ -60,7 +61,7 @@ class User_model extends CI_Model
     public function traer_usuario($cedula)
     {
         $usuario=array();
-        $this->db->select('cedula, nombre, email, empresa, razon_social');
+        $this->db->select('cedula, nombre, email, celular, empresa, razon_social');
         $this->db->from('usuarios');
         $this->db->join('empresas','usuarios.empresa=empresas.id');
         $this->db->where('cedula',$cedula);
@@ -71,6 +72,7 @@ class User_model extends CI_Model
             $usuario['cedula']=$row->cedula;
             $usuario['nombre']=$row->nombre;
             $usuario['email']=$row->email;
+            $usuario['celular']=$row->celular;
             $usuario['empresa']=$row->empresa;
             $usuario['razon_social']=$row->razon_social;
         }
@@ -91,6 +93,23 @@ class User_model extends CI_Model
     public function crear_usuario($usuario)
     {        
         $this->db->insert('usuarios', $usuario); 
+        
+        $this->db->select("contacto");
+        $this->db->where("id",$usuario['empresa']);
+        $query=$this->db->get("empresas");
+        if($query->num_rows()>0)
+        {
+            $row=$query->row();
+            if(!$row->contacto)
+            {
+                $data = array(
+                              'contacto' => $usuario['cedula']
+                           );
+
+               $this->db->where('id', $usuario['empresa']);
+               $this->db->update('empresas', $data);                 
+            }
+        }
     }
 
     public function cambiar_contrasena($cedula,$anterior,$nueva)

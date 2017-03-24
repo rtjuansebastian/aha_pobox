@@ -55,4 +55,11 @@ class User extends CI_Controller
             $this->load->view('user/cambiar_contrasena_view',$datos);
         }
     }
+    
+    public function ver_usuario()
+    {
+        $usuario=  $this->input->get("usuario");
+        $datos['usuario']=$this->user_model->traer_usuario($usuario);
+        $this->load->view('user/ver_usuario_view',$datos);
+    }
 }

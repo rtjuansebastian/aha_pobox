@@ -10,7 +10,6 @@
                                 <th>Nombre</th>
                                 <th>Telefono</th>
                                 <th>Extension</th>
-                                <th>Celular</th>
                                 <th>Contacto</th>
                                 <th>Dirección</th>
                             </tr>
@@ -25,8 +24,15 @@ foreach ($empresas as $empresa)
                                 <td><?=$empresa['razon_social']?></td>
                                 <td><?=$empresa['telefono']?></td>
                                 <td><?=$empresa['extension']?></td>
-                                <td><?=$empresa['celular']?></td>
-                                <td><?=$empresa['contacto']?></td>
+                                <td>
+<?php if(isset($contactos[$empresa['id']]['nombre']))
+{
+?>
+                                    <a href="<?=  base_url()?>user/ver_usuario?usuario=<?=$empresa['contacto']?>"><?=$contactos[$empresa['id']]['nombre']?></a>
+<?php
+}
+?>
+                                </td>
                                 <td><?=$empresa['direccion']?></td>                              
                             </tr>
 <?php 

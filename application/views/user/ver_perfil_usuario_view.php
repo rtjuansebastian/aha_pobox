@@ -13,7 +13,7 @@
                         <tbody>
                             <tr>
                                 <td>Cedula</td>
-                                <td><span><?=$usuario['cedula']?></span></td>
+                                <td class="id"><span><?=$usuario['cedula']?></span></td>
                             </tr>
                             <tr>
                                 <td>Nombre</td>
@@ -24,8 +24,12 @@
                                 <td class='editable' data-campo='email'><span><?=$usuario['email']?></span></td>
                             </tr>
                             <tr>
+                                <td>Celular</td>
+                                <td class='editable' data-campo='celular'><span><?=$usuario['celular']?></span></td>
+                            </tr>                            
+                            <tr>
                                 <td>Empresa</td>
-                                <td><span><?=$usuario['razon_social']?></span></td>
+                                <td class="id"><span><?=$usuario['razon_social']?></span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -37,7 +41,7 @@
             $(document).ready(function() 
             {
 		var td,campo,valor;
-		$(document).on("click","td.editable span",function(e)
+		$(document).on("click","td.editable",function(e)
 		{
                     e.preventDefault();
                     $("td:not(.id)").removeClass("editable");
@@ -60,22 +64,18 @@
                     $(".mensaje").html("<img src='../../estilos/imagenes/loading.gif'>");
                     e.preventDefault();
                     nuevovalor=$(this).closest("td").find("input").val();
-                    if(nuevovalor.trim()!="")
-                    {
-                            $.ajax({
-                                    type: "POST",
-                                    url: "<?=base_url()?>user/editar_campo_usuario",
-                                    data: { campo: campo, valor: nuevovalor}
-                            })
-                            .done(function( msg ) {
-                                    $(".mensaje").html(msg);
-                                    td.html("<span>"+nuevovalor+"</span>");
-                                    $("td:not(.id)").addClass("editable");
-                                    //$("tr:not(.id)").removeClass("duda");
-                                    setTimeout(function() {$('.ok,.ko').fadeOut('fast');}, 3000);
-                            });
-                    }
-                    else $(".mensaje").html("<p class='ko'>Debes ingresar un valor</p>");
-		});                        
+                    $.ajax({
+                        type: "POST",
+                        url: "<?=base_url()?>user/editar_campo_usuario",
+                        data: { campo: campo, valor: nuevovalor}
+                    })
+                    .done(function( msg ) {
+                            $(".mensaje").html(msg);
+                            td.html("<span>"+nuevovalor+"</span>");
+                            $("td:not(.id)").addClass("editable");
+                            //$("tr:not(.id)").removeClass("duda");
+                            setTimeout(function() {$('.ok,.ko').fadeOut('fast');}, 3000);
+                    });
+		});                       
             });                
         </script>  

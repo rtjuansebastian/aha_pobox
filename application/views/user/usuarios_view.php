@@ -9,6 +9,7 @@
                                 <th>Cedula</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
+                                <th>Celular</th>
                                 <th>Empresa</th>
                             </tr>
                         </thead>
@@ -21,6 +22,7 @@ foreach ($usuarios as $usuario)
                                 <td><?=$usuario['cedula']?></td>
                                 <td><?=$usuario['nombre']?></td>
                                 <td><?=$usuario['email']?></td>
+                                <td><?=$usuario['celular']?></td>
                                 <td><?=$usuario['razon_social']?></td>
                             </tr>
 <?php 

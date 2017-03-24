@@ -46,7 +46,14 @@
                                         <li><a href="<?php echo base_url(); ?>admin/ver_productos">Ver productos</a></li>
                                         <li><a href="<?php echo base_url(); ?>admin/agregar_producto">Agregar producto</a></li>
                                     </ul>
-                                </li> 
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empresas<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>admin/ver_empresas">Ver empresas</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/agregar_empresa">Agregar empresa</a></li>
+                                    </ul>
+                                </li>                                
                                 <li><a href="<?=  base_url()?>admin/ver_inventarios">Inventarios</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes<span class="caret"></span></a>

@@ -13,11 +13,11 @@
                         <tbody>
                             <tr>
                                 <td>Nit</td>
-                                <td><span><?=$empresa['nit']?></span></td>
+                                <td class='editable' data-campo='nit'><span><?=$empresa['nit']?></span></td>
                             </tr>
                             <tr>
                                 <td>Nombre</td>
-                                <td><span><?=$empresa['razon_social']?></span></td>
+                                <td class="id"><span><?=$empresa['razon_social']?></span></td>
                             </tr>
                             <tr>
                                 <td>Telefono</td>
@@ -28,16 +28,25 @@
                                 <td class='editable' data-campo='extension'><span><?=$empresa['extension']?></span></td>
                             </tr>
                             <tr>
-                                <td>Celular</td>
-                                <td class='editable' data-campo='celular'><span><?=$empresa['celular']?></span></td>
+                                <td>Direccion</td>
+                                <td class='editable' data-campo='direccion'><span><?=$empresa['direccion']?></span></td>
                             </tr>
                             <tr>
                                 <td>Contacto</td>
-                                <td class='editable' data-campo='contacto'><span><?=$empresa['contacto']?></span></td>
-                            </tr> 
-                            <tr>
-                                <td>Direccion</td>
-                                <td class='editable' data-campo='direccion'><span><?=$empresa['direccion']?></span></td>
+                                <td class='id'>
+<?php
+if(isset($contacto['cedula']))
+{
+?>
+                                    <span><a href="<?=  base_url()?>user/ver_usuario?usuario=<?=$contacto['cedula']?>"><?=$contacto['nombre']?></a></span> <button class="btn btn-primary btn-xs glyphicon glyphicon-pencil" data-toggle="modal" data-target="#ModalCambiarContacto"></button></td>
+<?php
+}
+else {
+?>
+                                <button class="btn btn-primary btn-xs glyphicon glyphicon-pencil" data-toggle="modal" data-target="#ModalCambiarContacto"></button>
+<?php                                
+}
+?>
                             </tr>                             
                         </tbody>
                     </table>
@@ -51,6 +60,41 @@ if($sesion['rol']=='1')
 }
 ?>
                 </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="ModalCambiarContacto" tabindex="-1" role="dialog" aria-labelledby="ModalLabelCambiarContacto">
+            <div class="modal-dialog" role="document">
+                <form method="post" action="<?=  base_url()?>company/cambiar_contacto_empresa">
+                    <input type="hidden" name="id" value="<?=$empresa['id']?>"/>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="ModalLabelCambiarContacto">Cambiar contacto</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Usuarios <?=$empresa['razon_social']?></h4>
+                            <div class="form-group">
+                                <label>Usuario</label>
+                                <select class="form-control selectpicker" name="contacto" id="contacto" required="">
+                                    <option></option>
+<?php
+foreach ($usuarios as $usuario)
+{
+?>
+                                    <option value="<?=$usuario['cedula']?>"><?=$usuario['nombre']?></option>
+<?php
+}
+?>
+                                </select>
+                            </div>                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 <?php $this->load->view("footer");  ?> 

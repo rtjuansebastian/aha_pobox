@@ -61,9 +61,22 @@ class Admin extends CI_Controller
     public function ver_empresas()
     {
         $datos['empresas']=$this->company_model->traer_empresas();
+        $datos['contactos']=$this->company_model->traer_contactos_empresas();
         $this->load->view('company/empresas_view',$datos);
     }
     
+    public function agregar_empresa()
+    {
+        $this->load->view('company/agregar_empresas_view');
+    }
+    
+    public function crear_empresa()
+    {
+        $empresa=  $this->input->post();
+        $this->company_model->crear_empresa($empresa);
+        redirect('/admin/ver_empresas', 'refresh');        
+    }
+
     public function ver_usuarios()
     {
         $datos['usuarios']=$this->user_model->traer_usuarios();
