@@ -97,7 +97,7 @@ class Sales_model extends CI_Model
     public function traer_promedio_ventas_empresa($empresa)
     {
         $promedios=array();
-        $this->db->select("producto, COUNT(producto) as cantidad, MONTH(fecha) as mes");
+        $this->db->select("producto, SUM(cantidad) as cantidad, MONTH(fecha) as mes");
         $this->db->from("inventarios");
         $this->db->where("empresa",$empresa);
         $this->db->where('ingreso_salida','S');
