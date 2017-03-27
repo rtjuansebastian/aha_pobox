@@ -34,11 +34,6 @@ foreach ($productos as $producto)
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="daterange">Periodo</label>
-                            <br>
-                            <input type="text" class="form-control" name="daterange" value="" />
-                        </div>
-                        <div class="form-group">
                             <label></label>
                             <br>
                             <button type="submit" class="btn btn-default">Filtrar</button>

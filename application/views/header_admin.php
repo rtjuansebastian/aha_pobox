@@ -17,7 +17,7 @@
     <body>
         <header>
             <div class="container">
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                       <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
@@ -65,7 +65,7 @@
                                         <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_en_proceso">Ordenes en proceso</a></li>
                                         <li><a href="<?php echo base_url(); ?>admin/ver_pedidos_entregados">Ordenes entregados</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="<?php echo base_url(); ?>admin/crear_orden">Crear Orden</a></li>
+                                        <li><a href="<?php echo base_url(); ?>admin/crear_pedido">Crear Orden</a></li>
                                     </ul>
                                 </li>                                  
                                 <li><a href="<?=  base_url()?>admin/ver_ventas">Salidas</a></li>

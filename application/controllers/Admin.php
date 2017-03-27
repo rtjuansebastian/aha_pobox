@@ -97,9 +97,7 @@ class Admin extends CI_Controller
         $producto=null;
         if($this->input->post('empresa')!==''){$empresa=$this->input->post('empresa');}
         if($this->input->post('producto')!==''){$producto=$this->input->post('producto');}
-        $rango=$this->input->post('daterange');
-        $fecha=  explode("/", $rango);
-        $datos['inventarios']=$this->inventory_model->traer_inventarios($empresa,$producto,trim($fecha[0]),trim($fecha[1]));
+        $datos['inventarios']=$this->inventory_model->traer_inventarios($empresa,$producto);
         $datos['empresas']=$this->company_model->traer_empresas();
         $datos['productos']=$this->product_model->traer_productos();
         $this->load->view('inventory/inventarios_view',$datos);        
@@ -156,6 +154,22 @@ class Admin extends CI_Controller
         $this->load->view('order/pedidos_view',$datos);       
     }
     
+    public function crear_pedido()
+    {
+        $datos['productos']=$this->product_model->traer_productos();
+        $datos['empresas']=$this->company_model->traer_empresas();
+        $this->load->view('order/hacer_pedido_admin_view',$datos); 
+    }
+    
+    public function registrar_pedido_admin()
+    {
+        $fecha=  $this->input->post("fecha");
+        $empresa=  $this->input->post("empresa");
+        $items=$this->order_model->items_pedido();
+        $this->order_model->registrar_pedido($fecha,$empresa,$items,'2');        
+        redirect('/admin/ver_pedidos_confirmados', 'refresh');
+    }
+
     public function ver_ventas()
     {
         $datos['empresas']=  $this->company_model->traer_empresas();

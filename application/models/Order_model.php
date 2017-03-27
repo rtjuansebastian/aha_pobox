@@ -134,12 +134,12 @@ class Order_model extends CI_Model
         return $datos;        
     }
     
-    public function registrar_pedido($fecha,$empresa,$items)
+    public function registrar_pedido($fecha,$empresa,$items,$estado=1)
     {
         $data = array(
            'fecha' => $fecha ,
            'empresa' => $empresa ,
-           'estado' => '1'
+           'estado' => $estado
         );
 
         $this->db->insert('pedidos', $data);
