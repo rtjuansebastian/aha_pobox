@@ -22,6 +22,7 @@ class Order extends CI_Controller
         $this->load->model('product_model');
         $this->load->model('company_model');
         $this->load->model('order_model');
+        $this->load->model('sales_model');
     }    
     
     public function ver_pedidos_empresa()
@@ -66,6 +67,15 @@ class Order extends CI_Controller
         $items=$this->order_model->items_pedido();
         $this->order_model->registrar_pedido($fecha,$datos['usuario']['empresa'],$items);
         redirect('/order/ver_pedidos_empresa', 'refresh');
-    }    
-       
+    }
+
+    public function solicitar_proyeccion()
+    {
+        $usuario=$this->session->userdata('sesion'); 
+        $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);         
+        $datos['catalogo']=$this->sales_model->traer_catalogo($datos['usuario']['empresa']);
+        $datos['orden']=$this->order_model->crear_proyeccion($datos['catalogo']);
+        $datos['productos']=$this->product_model->traer_productos();
+        $this->load->view('order/hacer_pedido_view',$datos);
+    }      
 }

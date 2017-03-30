@@ -20,7 +20,13 @@ foreach ($inventario as $producto)
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad</label>
-                        <input type="number" class="form-control" name="cantidad" id="cantidad" min="0" max="<?phpif(isset($cantidad[0])){echo $cantidad[0]}?>" value="1"/>
+<?php
+if(isset($cantidad[0]))
+{
+    $cantidad_primer_producto=$cantidad[0];
+}
+?>                        
+                        <input type="number" class="form-control" name="cantidad" id="cantidad" min="0" max="<?=$cantidad_primer_producto?>" value="1"/>
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-primary" id="agregar_producto">Agregar</button>

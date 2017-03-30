@@ -58,6 +58,7 @@ class Sales extends CI_Controller
         $datos['usuario']=$this->user_model->traer_usuario($usuario['cedula']);        
         $datos['promedios']=$this->sales_model->traer_promedio_ventas_empresa($datos['usuario']['empresa']);
         $datos['inventario']=$this->inventory_model->traer_inventario($datos['usuario']['empresa']);
+        $datos['catalogo']=$this->sales_model->traer_catalogo($datos['usuario']['empresa']);
         $this->load->view('sales/ver_promedio_ventas_empresa_view',$datos);
     }
     

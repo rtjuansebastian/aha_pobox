@@ -22,6 +22,7 @@ class Sales_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->model("inventory_model");
     }
     
     public function traer_ventas($empresa=NULL,$producto=NULL,$fecha_inicial=NULL,$fecha_final=NULL)
@@ -152,5 +153,37 @@ class Sales_model extends CI_Model
         
         return $promedios;
     }
+     
+    public function traer_catalogo($empresa)
+    {
+        $catalogo=array();
+        $this->db->select("inventarios.id, inventarios.producto, productos.titulo");
+        $this->db->from('inventarios');
+        $this->db->join('productos',"inventarios.producto=productos.referencia");         
+        $this->db->where("empresa",$empresa);        
+        $this->db->group_by("producto");
+        $query=  $this->db->get();
+        
+        foreach ($query->result() as $row)
+        {
+            $catalogo[$row->id]['id']=$row->id;
+            $catalogo[$row->id]['referencia']=$row->producto;
+            $catalogo[$row->id]['titulo']=$row->titulo;
             
+            $inventario=  $this->inventory_model->traer_inventario($empresa);
+            $promedios=$this->sales_model->traer_promedio_ventas_empresa($empresa);
+            if(!isset($promedios[$row->producto]['total']))
+            {
+                $promedios[$row->producto]['total']=0;
+                $promedios[$row->producto]['min']=0;
+                $promedios[$row->producto]['max']=0;
+                $promedios[$row->producto]['count']=1;
+            }
+            $catalogo[$row->id]['cantidad_inventario']=$inventario[$row->producto]['cantidad'];
+            $catalogo[$row->id]['promedio_ventas']=($promedios[$row->producto]['total'])/($promedios[$row->producto]['count']);            
+            $catalogo[$row->id]['proyeccion']=($catalogo[$row->id]['cantidad_inventario']-$catalogo[$row->id]['promedio_ventas'])*1.25;
+        }
+        
+        return $catalogo;
+    }
 }

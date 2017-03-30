@@ -199,5 +199,20 @@ class Order_model extends CI_Model
             }
         }
     }
+    
+    public function crear_proyeccion($proyeccion)
+    {
+        $this->cart->destroy();
+        foreach ($proyeccion as $producto)
+        {
+            if($producto['proyeccion']<0)
+            {                
+                $cantidad=round($producto['proyeccion']*(-1));
+                $titulo= substr($producto['titulo'],0,14);
+                $this->order_model->agregar_producto($producto['referencia'],$cantidad,$titulo);
+            }
+        }
+                
+    }
 
 }
