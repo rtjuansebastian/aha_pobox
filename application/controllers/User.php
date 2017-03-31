@@ -60,6 +60,7 @@ class User extends CI_Controller
     {
         $usuario=  $this->input->get("usuario");
         $datos['usuario']=$this->user_model->traer_usuario($usuario);
+        $datos['header']="header";
         $this->load->view('user/ver_usuario_view',$datos);
     }
 }

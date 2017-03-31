@@ -202,4 +202,12 @@ class Admin extends CI_Controller
         $this->user_model->crear_usuario($usuario);
         redirect('/admin/ver_usuarios', 'refresh');
     }
+    
+    public function ver_usuario()
+    {
+        $usuario=  $this->input->get("usuario");
+        $datos['usuario']=$this->user_model->traer_usuario($usuario);
+        $datos['header']="header_admin";
+        $this->load->view('user/ver_usuario_view',$datos);
+    }   
 }

@@ -28,7 +28,7 @@ foreach ($empresas as $empresa)
 <?php if(isset($contactos[$empresa['id']]['nombre']))
 {
 ?>
-                                    <a href="<?=  base_url()?>user/ver_usuario?usuario=<?=$empresa['contacto']?>"><?=$contactos[$empresa['id']]['nombre']?></a>
+                                    <a href="<?=  base_url()?>admin/ver_usuario?usuario=<?=$empresa['contacto']?>"><?=$contactos[$empresa['id']]['nombre']?></a>
 <?php
 }
 ?>
